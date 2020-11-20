@@ -33,7 +33,7 @@ const Signup = () => {
             </Form.Group>
             <Form.Group id='password'>
               <Form.Label>password</Form.Label>
-              <Form.Control type='password' required ref={passwordRef} />
+              <Form.Control type='password ' required ref={passwordRef} />
             </Form.Group>
             <Form.Group id='password-confirm'>
               <Form.Label>Password COnfirmation</Form.Label>
