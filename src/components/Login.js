@@ -6,21 +6,15 @@ import { Link, useHistory } from 'react-router-dom';
 const Signup = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
-  const { signUp } = useAuth();
+  const { login } = useAuth();
   const history = useHistory();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (passwordRef.current.value === passwordConfirmRef.current.value) {
-      try {
-        await signUp(emailRef.current.value, passwordRef.current.value);
-        history.push('/dashboard');
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      console.log('not match');
+    try {
+      await login(emailRef.current.value, passwordRef.current.value);
+      history.push('/');
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -28,7 +22,7 @@ const Signup = () => {
     <React.Fragment>
       <Card>
         <Card.Body>
-          <h2 className='text-center  mb-4 '>Sign Up</h2>
+          <h2 className='text-center  mb-4 '>Log In</h2>
           <Form onSubmit={handleSubmit}>
             <Form.Group id='email'>
               <Form.Label>Email</Form.Label>
@@ -36,20 +30,19 @@ const Signup = () => {
             </Form.Group>
             <Form.Group id='password'>
               <Form.Label>password</Form.Label>
-              <Form.Control type='password ' required ref={passwordRef} />
-            </Form.Group>
-            <Form.Group id='password-confirm'>
-              <Form.Label>Password COnfirmation</Form.Label>
-              <Form.Control type='password' required ref={passwordConfirmRef} />
+              <Form.Control type='password' required ref={passwordRef} />
             </Form.Group>
             <Button className='w-100' type='submit'>
-              Sign Up
+              Log in
             </Button>
           </Form>
+          <div className='w-100 text-center mt-2'>
+            <Link to='/forgot-password'>Forgot password</Link>
+          </div>
         </Card.Body>
       </Card>
       <div className='w-100 text-center mt-2'>
-        Already have an account? <Link to='login'>Log in</Link>
+        Need an account? <Link to='/signup'>Sign up</Link>
       </div>
     </React.Fragment>
   );
