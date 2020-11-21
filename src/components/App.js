@@ -9,6 +9,7 @@ import Signup from './Signup';
 import Login from './Login';
 import Dashboard from './Dashboard';
 import ForgotPassword from './ForgotPassword';
+import UpdateProfile from './UpdateProfile';
 const App = () => {
   return (
     <Container
@@ -20,6 +21,7 @@ const App = () => {
           <AuthProvider>
             <Switch>
               <PrivateRoute exact path='/' component={Dashboard} />
+              <PrivateRoute path='/update-profile' component={UpdateProfile} />
               <Route path='/signup' component={Signup} />
               <Route path='/login' component={Login} />
               <Route path='/forgot-password' component={ForgotPassword} />
